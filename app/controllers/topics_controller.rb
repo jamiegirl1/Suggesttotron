@@ -3,7 +3,10 @@ class TopicsController < ApplicationController
   # GET /topics.json
   def index
     @topics = Topic.all
-
+    @topics = @topics.sort_by do |topic|
+        topic.votes.count
+      end
+    @topics = @topics.reverse
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @topics }
@@ -44,7 +47,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to @topic, :notice => 'Topic was successfully created.' }
+        format.html { redirect_to topics_path, :notice => 'Topic was successfully created.' }
         format.json { render :json => @topic, :status => :created, :location => @topic }
       else
         format.html { render :action => "new" }

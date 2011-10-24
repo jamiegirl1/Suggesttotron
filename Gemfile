@@ -5,14 +5,15 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+
 
 group :development do
   gem 'sqlite3'
 end
 
 group :production do
-  gem 'pg'
+  #gem 'pg'
+  gem 'mysql2'
 end
 
 gem 'json'
